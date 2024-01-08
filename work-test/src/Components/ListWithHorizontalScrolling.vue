@@ -1,14 +1,14 @@
 <template>
-    <div class="lunch-list">
-        <div class="lunch-list-header">
-            <div :style="{ 'width': 'calc(100% - 150px)' }"><span>Бизнес-ланчи в Витебске</span></div>
+    <div class="widget-container">
+        <div class="widget-container-header">
+            <div class="header-title"><span>Бизнес-ланчи в Витебске</span></div>
             <div class="navigation-buttons-container">
                 <button @click="moveLeft" class="left-arrow" :class="isMinPosition() ? 'disabled' : ''"><i></i></button>
                 <button @click="moveRight" class="right-arrow"
                     :class="getMaxValidPosition() === this.currentPosition ? 'disabled' : ''"><i></i></button>
             </div>
         </div>
-        <div class="scrollable-container" :style="{ 'transform': getTranslateX() }">
+        <div class="widget-container-content scrollable" :style="{ 'transform': getTranslateX() }">
             <list-item v-for="item in lunchList" :item="item"></list-item>
         </div>
     </div>
@@ -62,8 +62,15 @@ export default {
 }
 </script>
 <style>
-.scrollable-container {
+.header-title {
+    width: calc(100% - 150px);
+}
+
+.widget-container-content {
     white-space: nowrap;
+}
+
+.scrollable {
     -webkit-transition: -webkit-transform 0.3s;
     transition: transform 0.3s;
 }
@@ -77,6 +84,7 @@ button {
 .disabled {
     opacity: 0.1;
     cursor: default;
+    pointer-events: none;
 }
 
 i {
@@ -94,7 +102,7 @@ i {
     background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4yLjEsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0i0KHQu9C+0LlfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHdpZHRoPSIyMXB4IiBoZWlnaHQ9IjM4cHgiIHZpZXdCb3g9IjAgMCAyMSAzOCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjEgMzg7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwb2x5Z29uIHBvaW50cz0iMiwwIDAsMiAxNywxOSAwLDM2IDIsMzggMjEsMTkgIi8+DQo8L3N2Zz4NCg==) no-repeat 50% 50%;
 }
 
-.lunch-list-header {
+.widget-container-header {
     display: flex;
     align-items: center;
     background-color: rgb(234, 234, 215);
@@ -102,7 +110,7 @@ i {
     height: 60px;
 }
 
-.lunch-list-header span {
+.widget-container-header span {
     line-height: 50px;
     border-bottom: 5px solid transparent;
     font: 900 60px/60px Roboto;
@@ -112,11 +120,11 @@ i {
     cursor: pointer;
 }
 
-.lunch-list-header span:hover {
+.widget-container-header span:hover {
     border-color: #000;
 }
 
-.lunch-list {
+.widget-container {
     width: calc(100% - 20px);
     margin: 10px;
     min-width: 380px;

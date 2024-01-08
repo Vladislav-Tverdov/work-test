@@ -1,14 +1,14 @@
 <template>
-    <div class="list-item">
-        <div class="header" @click="openLink" :style="{ 'background-image': getImageUrl() }">
+    <div class="list-item-container">
+        <div class="list-item-header" @click="openLink" :style="{ 'background-image': getImageUrl() }">
             <span class="company-name">{{ item.name }}</span>
             <span class="header-text">{{ item.address }}</span>
             <span class="header-text">{{ item.lunchTime }}</span>
         </div>
-        <div class="menu">
-            <ul>
-                <li v-for="menuItem in item.lunchMenu">
-                    <span class="menu-item">{{ menuItem.name }}</span>
+        <div class="list-item-content">
+            <ul class="menu-list">
+                <li class="menu-item" v-for="menuItem in item.lunchMenu">
+                    <span class="menu-title">{{ menuItem.name }}</span>
                     <span class="menu-price" title="Стоимость блюда">{{ getPrice(menuItem.price, false) }}</span>
                 </li>
             </ul>
@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style>
-.list-item:hover>.summary-price span {
+.list-item-container:hover>.summary-price span {
     color: white;
     background-color: red;
 }
@@ -66,16 +66,16 @@ export default {
     transition: background-color 0.3s;
 }
 
-li {
+.menu-item {
     margin-bottom: 13px;
     list-style: none;
 }
 
-ul {
+.menu-list {
     padding: 12px 35px 0px 23px;
 }
 
-.menu-item {
+.menu-title {
     font: 300 17px/22px roboto;
     padding: 2px 0;
 }
@@ -103,7 +103,7 @@ ul {
     border-color: white;
 }
 
-.list-item {
+.list-item-container {
     width: 50%;
     border-right: 1px solid transparent;
     display: inline-block;
@@ -114,21 +114,21 @@ ul {
 }
 
 @media screen and (min-width: 500px) {
-    .list-item {
+    .list-item-container {
         width: 34.5%
     }
 
 }
 
 @media screen and (min-width: 850px) {
-    .list-item {
+    .list-item-container {
         width: 25%
     }
 
 }
 
 
-.header {
+.list-item-header {
     display: flex;
     flex-direction: column;
     height: 150px;
@@ -140,7 +140,7 @@ ul {
     padding: 15px 38px 0 23px
 }
 
-.header:hover {
+.list-item-header:hover {
     cursor: pointer;
 }
 

@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <lunch-list :lunchList="lunchList"></lunch-list>
-    </div>
+    <lunch-list :lunchList="lunchList"></lunch-list>
 </template>
 <script>
 import LunchList from './Components/ListWithHorizontalScrolling.vue'
