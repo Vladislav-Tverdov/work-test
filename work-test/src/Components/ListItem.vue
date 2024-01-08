@@ -1,6 +1,6 @@
 <template>
     <div class="list-item-container">
-        <div class="list-item-header" @click="openLink" :style="{ 'background-image': getImageUrl() }">
+        <div class="list-item-header" @click="openLink" :style="{ 'background-image': getImageUrl }">
             <span class="company-name">{{ item.name }}</span>
             <span class="header-text">{{ item.address }}</span>
             <span class="header-text">{{ item.lunchTime }}</span>
@@ -28,9 +28,6 @@ export default {
         }
     },
     methods: {
-        getImageUrl() {
-            return `url(${this.item.image})`
-        },
         getPrice(price, withPrefix) {
             return price ? `${new Intl.NumberFormat().format(price)} ${withPrefix ? "р" : ""}` : ""
         },
@@ -38,6 +35,13 @@ export default {
             window.open(`https://${this.item.url}/`, "_blank");
         }
     },
+    computed: {
+        getImageUrl: {
+            get() {
+                return `url(${this.item.image})`
+            }
+        },
+    }
 }
 </script>
 
