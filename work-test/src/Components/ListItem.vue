@@ -1,11 +1,11 @@
 <template>
-    <div class="list-item-container">
-        <div class="list-item-header" @click="openLink" :style="{ 'background-image': getImageUrl }">
-            <span class="company-name">{{ item.name }}</span>
+    <div class="list__item">
+        <div class="list__item-header" @click="openLink" :style="{ 'background-image': getImageUrl }">
+            <span class="header-company_name">{{ item.name }}</span>
             <span class="header-text">{{ item.address }}</span>
             <span class="header-text">{{ item.lunchTime }}</span>
         </div>
-        <div class="list-item-content">
+        <div class="list__item-content">
             <ul class="menu-list">
                 <li class="menu-item" v-for="menuItem in item.lunchMenu">
                     <span class="menu-title">{{ menuItem.name }}</span>
@@ -13,7 +13,7 @@
                 </li>
             </ul>
         </div>
-        <div class="summary-price"><span>{{
+        <div class="list__item-summary_price"><span>{{
             getPrice(item.summaryPrice, true)
         }}</span></div>
 
@@ -46,7 +46,7 @@ export default {
 </script>
 
 <style>
-.list-item-container:hover>.summary-price span {
+.list__item:hover>.list__item-summary_price span {
     color: white;
     background-color: red;
 }
@@ -61,12 +61,11 @@ export default {
 }
 
 
-.summary-price span {
+.list__item-summary_price span {
     font: 900 24px/29px roboto;
     margin: 5px 0px 0px 19px;
     padding: 0px 5px 2px 5px;
     border-radius: 2px;
-    -webkit-transition: background-color 0.3s;
     transition: background-color 0.3s;
 }
 
@@ -107,7 +106,7 @@ export default {
     border-color: white;
 }
 
-.list-item-container {
+.list__item {
     width: 50%;
     border-right: 1px solid transparent;
     display: inline-block;
@@ -132,7 +131,7 @@ export default {
 }
 
 
-.list-item-header {
+.list__item-header {
     display: flex;
     flex-direction: column;
     height: 150px;
@@ -144,7 +143,7 @@ export default {
     padding: 15px 38px 0 23px
 }
 
-.list-item-header:hover {
+.list__item-header:hover {
     cursor: pointer;
 }
 
